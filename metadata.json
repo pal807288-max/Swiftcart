@@ -1,0 +1,8 @@
+{
+  "name": "SwiftCart",
+  "description": "Food and grocery delivery application with customer shopping, store management, order tracking, and payment features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

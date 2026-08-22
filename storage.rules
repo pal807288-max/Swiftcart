@@ -1,0 +1,119 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // ---------- Helper functions ----------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function userEmail() {
+      return request.auth.token.email != null ? request.auth.token.email.lower() : '';
+    }
+
+    function hasCustomClaim(claim) {
+      return isAuthenticated() && request.auth.token != null && claim in request.auth.token && request.auth.token[claim] == true;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        hasCustomClaim('admin') ||
+        (request.auth.token.role != null && request.auth.token.role.lower() == 'admin')
+      );
+    }
+
+    function isStoreOwner() {
+      return isAuthenticated() && (
+        isAdmin() ||
+        hasCustomClaim('store_owner') ||
+        (request.auth.token.role != null && (request.auth.token.role.lower() == 'store_owner' || request.auth.token.role.lower() == 'store owner'))
+      );
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && (
+        request.auth.uid == userId ||
+        (userEmail() != '' && userEmail() == userId.lower())
+      );
+    }
+
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') &&
+             request.resource.size < 10 * 1024 * 1024;
+    }
+
+    function isValidDocument() {
+      return (request.resource.contentType.matches('image/.*') ||
+              request.resource.contentType == 'application/pdf') &&
+             request.resource.size < 10 * 1024 * 1024;
+    }
+
+    function isOrderParticipant(orderId) {
+      return isAuthenticated() && (
+        isAdmin() ||
+        (
+          firestore.exists(/databases/(default)/documents/orders/$(orderId)) && (
+            firestore.get(/databases/(default)/documents/orders/$(orderId)).data.customerId == request.auth.uid ||
+            firestore.get(/databases/(default)/documents/orders/$(orderId)).data.userId == request.auth.uid ||
+            firestore.get(/databases/(default)/documents/orders/$(orderId)).data.deliveryPartnerId == request.auth.uid ||
+            (userEmail() != '' && (
+              firestore.get(/databases/(default)/documents/orders/$(orderId)).data.customerId == userEmail() ||
+              firestore.get(/databases/(default)/documents/orders/$(orderId)).data.userId == userEmail() ||
+              firestore.get(/databases/(default)/documents/orders/$(orderId)).data.deliveryPartnerId == userEmail()
+            ))
+          )
+        )
+      );
+    }
+
+    // Public Assets: Restaurant Photos, Menu Item Photos, General App Media (Restricted writes)
+    match /restaurants/{restaurantId}/{fileName} {
+      allow read: if true;
+      allow write: if isStoreOwner() && isValidImage();
+    }
+
+    match /menu_items/{itemId}/{fileName} {
+      allow read: if true;
+      allow write: if isStoreOwner() && isValidImage();
+    }
+
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+    }
+
+    // User Profile Avatars
+    match /users/{userId}/avatar/{fileName} {
+      allow read: if true;
+      allow write: if isOwner(userId) && isValidImage();
+    }
+
+    // Delivery Partner KYC & Private Documents (Identity, License, Vehicle RC)
+    match /kyc_documents/{userId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) && isValidDocument();
+    }
+
+    match /partner_applications/{userId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) && isValidDocument();
+    }
+
+    // Order Proofs & Delivery Signatures / Receipts
+    match /orders/{orderId}/{fileName} {
+      allow read: if isOrderParticipant(orderId);
+      allow write: if isOrderParticipant(orderId) && (isValidImage() || isValidDocument());
+    }
+
+    // Support Ticket & Issue Attachments
+    match /support/{userId}/{fileName} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) && (isValidImage() || isValidDocument());
+    }
+
+    // Fallback: Deny any unspecified storage path
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

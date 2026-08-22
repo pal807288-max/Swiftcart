@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App & Common -->
+    <string name="app_name">SwiftCart</string>
+    <string name="app_tagline">Fast Grocery &amp; Food Delivery</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="close">Close</string>
+    <string name="back">Back</string>
+    <string name="search">Search</string>
+    <string name="submit">Submit</string>
+    <string name="confirm">Confirm</string>
+    <string name="loading">Loading...</string>
+
+    <!-- Language Selector -->
+    <string name="language_settings">Language Settings</string>
+    <string name="select_language">Select App Language</string>
+    <string name="language_english">English (अंग्रेज़ी)</string>
+    <string name="language_hindi">Hindi (हिंदी)</string>
+    <string name="current_language">Current Language: %1$s</string>
+    <string name="choose_language_title">Choose Your Language</string>
+    <string name="choose_language_subtitle">Select your preferred language to get started with SwiftCart</string>
+    <string name="english_native">English</string>
+    <string name="english_subtitle">English (Default)</string>
+    <string name="hindi_native">हिंदी</string>
+    <string name="hindi_subtitle">Hindi</string>
+    <string name="continue_btn">Continue</string>
+
+    <!-- Auth / Login / Signup -->
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_subtitle">Sign in to continue to SwiftCart</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_up_subtitle">Create a new SwiftCart account</string>
+    <string name="email_label">Email Address</string>
+    <string name="password_label">Password</string>
+    <string name="full_name_label">Full Name</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="already_have_account">Already have an account? Sign In</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_in_phone">Sign in with Phone (OTP)</string>
+    <string name="enter_phone_number">Enter your 10-digit mobile number</string>
+    <string name="send_otp">Send OTP Code</string>
+    <string name="enter_otp">Enter 6-digit OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_instructions">Enter your email address to receive a password reset link.</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="verify_email_title">Verify Email</string>
+    <string name="verify_email_instructions">Please enter the verification code sent to your email.</string>
+
+    <!-- Navigation Titles -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_orders">My Orders</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_admin">Admin</string>
+    <string name="nav_delivery">Deliveries</string>
+    <string name="nav_store">Store</string>
+
+    <!-- Customer Home & Search -->
+    <string name="delivering_to">Delivering To</string>
+    <string name="search_hint">Search grocery, essentials &amp; snacks...</string>
+    <string name="categories">Categories</string>
+    <string name="featured_stores">Featured Stores</string>
+    <string name="popular_items">Popular Items</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="view_cart">View Cart</string>
+    <string name="rating">Rating</string>
+    <string name="mins_delivery">%1$d mins</string>
+    <string name="closed">CLOSED</string>
+    <string name="sold_out">SOLD OUT</string>
+    <string name="low_stock">LOW STOCK</string>
+    <string name="no_stores_found">No stores found</string>
+    <string name="no_items_found">No items found</string>
+
+    <!-- Cart & Checkout -->
+    <string name="my_cart">My Cart</string>
+    <string name="cart_empty">Your cart is empty</string>
+    <string name="cart_empty_subtitle">Explore stores and add items to your cart</string>
+    <string name="start_shopping">Start Shopping</string>
+    <string name="item_total">Item Total</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="taxes_and_charges">Taxes &amp; Govt Charges</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="to_pay">To Pay</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="checkout">Checkout</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="place_order">Place Order (%1$s)</string>
+    <string name="upi_pay">UPI / Google Pay / PhonePe</string>
+    <string name="cash_on_delivery">Cash on Delivery (COD)</string>
+
+    <!-- Order Tracking & History -->
+    <string name="order_placed_success">Order Placed Successfully!</string>
+    <string name="order_id_label">Order ID: #%1$s</string>
+    <string name="track_order">Track Order</string>
+    <string name="order_status">Order Status</string>
+    <string name="order_processing">Order Processing</string>
+    <string name="estimated_arrival">Estimated Arrival: 15–20 mins</string>
+    <string name="pickup_from">Pickup From:</string>
+    <string name="deliver_to">Deliver To:</string>
+
+    <!-- Store Owner & Admin Panel -->
+    <string name="store_owner_dashboard">Store Owner Dashboard</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="manage_inventory">Manage Inventory</string>
+    <string name="add_new_item">Add New Item</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_price">Price (₹)</string>
+    <string name="item_category">Category</string>
+    <string name="item_description">Description</string>
+    <string name="incoming_orders">Incoming Orders</string>
+    <string name="no_orders">No orders found</string>
+
+    <!-- Delivery Partner Dashboard -->
+    <string name="delivery_partner_dashboard">Delivery Partner Dashboard</string>
+    <string name="todays_earnings">Today\'s Earnings</string>
+    <string name="total_earnings">Total Earnings</string>
+    <string name="live_deliveries">Live Deliveries</string>
+    <string name="delivery_history">Delivery History</string>
+    <string name="accept_delivery">Accept Delivery (₹30 Fee)</string>
+    <string name="mark_delivered">Mark Delivered</string>
+    <string name="earned_amount">Earned ₹%1$.2f</string>
+
+    <!-- Profile & Settings -->
+    <string name="profile">Profile</string>
+    <string name="delivery_account_info">Delivery Account Info</string>
+    <string name="address">Address</string>
+    <string name="verification_status">Verification Status</string>
+    <string name="language_preference">Language Preference</string>
+    <string name="logout_securely">Logout Securely from SwiftCart</string>
+    <string name="testing_and_diagnostics">Testing &amp; Diagnostics</string>
+    <string name="reset_and_seed">Reset &amp; Seed</string>
+    <string name="empty_database">Empty Database</string>
+</resources>

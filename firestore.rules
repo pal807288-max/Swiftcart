@@ -1,0 +1,379 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Helper functions ----------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function userEmail() {
+      return request.auth.token.email != null ? request.auth.token.email.lower() : '';
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && (
+        request.auth.uid == userId ||
+        (userEmail() != '' && userEmail() == userId.lower())
+      );
+    }
+
+    function hasCustomClaim(claim) {
+      return isAuthenticated() && request.auth.token != null && claim in request.auth.token && request.auth.token[claim] == true;
+    }
+
+    function getCustomRole() {
+      return isAuthenticated() && request.auth.token != null && 'role' in request.auth.token ? request.auth.token.role.lower() : '';
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        hasCustomClaim('admin') ||
+        getCustomRole() == 'admin'
+      );
+    }
+
+    function isStoreOwner() {
+      return isAuthenticated() && (
+        isAdmin() ||
+        hasCustomClaim('store_owner') ||
+        getCustomRole() == 'store_owner' ||
+        getCustomRole() == 'store owner' ||
+        getCustomRole() == 'owner'
+      );
+    }
+
+    function isDeliveryPartner() {
+      return isAuthenticated() && (
+        isAdmin() ||
+        hasCustomClaim('delivery_partner') ||
+        getCustomRole() == 'delivery_partner' ||
+        getCustomRole() == 'delivery partner' ||
+        getCustomRole() == 'courier'
+      );
+    }
+
+    function isRestaurantOwner(restaurantData) {
+      return isAuthenticated() && (
+        isAdmin() ||
+        (restaurantData.ownerId != null && (restaurantData.ownerId == request.auth.uid || (userEmail() != '' && restaurantData.ownerId == userEmail()))) ||
+        (restaurantData.ownerEmail != null && userEmail() != '' && restaurantData.ownerEmail.lower() == userEmail())
+      );
+    }
+
+    function isOrderCustomer(orderData) {
+      return isAuthenticated() && (
+        orderData.userId == request.auth.uid ||
+        orderData.customerId == request.auth.uid ||
+        (userEmail() != '' && (orderData.userId == userEmail() || orderData.customerId == userEmail()))
+      );
+    }
+
+    function isOrderDeliveryPartner(orderData) {
+      return isAuthenticated() && (
+        orderData.deliveryPartnerId == request.auth.uid ||
+        (userEmail() != '' && orderData.deliveryPartnerId == userEmail()) ||
+        (orderData.deliveryPartnerId == "" && isDeliveryPartner())
+      );
+    }
+
+    function isOrderStoreOwner(orderData) {
+      return isAuthenticated() && (
+        exists(/databases/$(database)/documents/restaurants/$(orderData.restaurantId)) &&
+        isRestaurantOwner(get(/databases/$(database)/documents/restaurants/$(orderData.restaurantId)).data)
+      );
+    }
+
+    function isOrderParticipant(orderData) {
+      return isAdmin() || isOrderCustomer(orderData) || isOrderDeliveryPartner(orderData) || isOrderStoreOwner(orderData);
+    }
+
+    // ---------- Users ----------
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+
+      // Normal users can create their own profile, but cannot assign themselves privileged roles
+      allow create: if isOwner(userId) && (
+        isAdmin() ||
+        !('role' in request.resource.data) ||
+        request.resource.data.role in ['customer', 'pending_delivery_partner'] ||
+        (userEmail() == 'pal807288@gmail.com' && request.resource.data.role == 'admin') ||
+        (userEmail() == 'dipikapal707@gmail.com' && request.resource.data.role == 'delivery_partner')
+      );
+
+      // Normal users cannot modify role, isApproved, status, or subscription state directly
+      allow update: if isOwner(userId) && (
+        isAdmin() ||
+        (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'isApproved', 'status', 'verificationStatus', 'isVerified', 'approvedAt', 'subscriptionStatus', 'subscriptionExpiryDate', 'isPlusSubscriber']))
+      );
+
+      allow delete: if isAdmin();
+
+      match /notifications/{notificationId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // ---------- Top-level Notifications ----------
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated() && (
+        resource == null ||
+        resource.data.userId == request.auth.uid ||
+        resource.data.recipientUserId == request.auth.uid ||
+        (userEmail() != '' && (resource.data.userId == userEmail() || resource.data.recipientUserId == userEmail())) ||
+        isAdmin()
+      );
+      allow create: if isAdmin() || (
+        isAuthenticated() && (
+          request.resource.data.userId == request.auth.uid ||
+          request.resource.data.recipientUserId == request.auth.uid ||
+          (userEmail() != '' && (request.resource.data.userId == userEmail() || request.resource.data.recipientUserId == userEmail()))
+        )
+      );
+      allow update, delete: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        resource.data.recipientUserId == request.auth.uid ||
+        (userEmail() != '' && (resource.data.userId == userEmail() || resource.data.recipientUserId == userEmail())) ||
+        isAdmin()
+      );
+    }
+
+    // ---------- Restaurants & Menu ----------
+    match /restaurants/{restaurantId} {
+      allow read: if true;
+      allow create: if isAdmin() || isStoreOwner();
+      allow update: if isAdmin() || (
+        isRestaurantOwner(resource.data) && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['ownerId', 'ownerEmail', 'isApproved']) ||
+          isAdmin()
+        )
+      );
+      allow delete: if isAdmin();
+    }
+
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow create: if isAdmin() || (
+        isAuthenticated() &&
+        request.resource.data.restaurantId != null &&
+        exists(/databases/$(database)/documents/restaurants/$(request.resource.data.restaurantId)) &&
+        isRestaurantOwner(get(/databases/$(database)/documents/restaurants/$(request.resource.data.restaurantId)).data)
+      );
+      allow update: if isAdmin() || (
+        isAuthenticated() &&
+        resource.data.restaurantId != null &&
+        exists(/databases/$(database)/documents/restaurants/$(resource.data.restaurantId)) &&
+        isRestaurantOwner(get(/databases/$(database)/documents/restaurants/$(resource.data.restaurantId)).data)
+      );
+      allow delete: if isAdmin() || (
+        isAuthenticated() &&
+        resource.data.restaurantId != null &&
+        exists(/databases/$(database)/documents/restaurants/$(resource.data.restaurantId)) &&
+        isRestaurantOwner(get(/databases/$(database)/documents/restaurants/$(resource.data.restaurantId)).data)
+      );
+    }
+
+    // ---------- Orders & Order Lifecycle ----------
+    match /orders/{orderId} {
+      allow read: if isOrderParticipant(resource.data) || (isDeliveryPartner() && (resource.data.status.lower() == 'ready' || resource.data.deliveryPartnerId == ''));
+      
+      // On create: non-admins cannot mark paymentStatus as SUCCESS
+      allow create: if isAuthenticated() && (
+        request.resource.data.customerId == request.auth.uid ||
+        request.resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && (request.resource.data.customerId == userEmail() || request.resource.data.userId == userEmail())) ||
+        isAdmin()
+      ) && (
+        isAdmin() ||
+        !('paymentStatus' in request.resource.data) ||
+        request.resource.data.paymentStatus != 'SUCCESS'
+      );
+      
+      // On update: non-admins cannot alter payment verification or mark payment SUCCESS directly
+      allow update: if (isOrderParticipant(resource.data) || (isDeliveryPartner() && (resource.data.deliveryPartnerId == '' || resource.data.status.lower() == 'ready'))) && (
+        isAdmin() ||
+        (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['razorpayPaymentId', 'razorpayOrderId', 'paymentSignature', 'paymentVerifiedAt', 'totalAmount', 'refundId', 'refundType', 'refundAmount']) &&
+          (!('paymentStatus' in request.resource.data) || request.resource.data.paymentStatus != 'SUCCESS' || resource.data.paymentStatus == 'SUCCESS')
+        )
+      );
+      
+      allow delete: if isAdmin();
+
+      match /chats/{chatId} {
+        allow read: if isAuthenticated() && isOrderParticipant(get(/databases/$(database)/documents/orders/$(orderId)).data);
+        allow create: if isAuthenticated() && isOrderParticipant(get(/databases/$(database)/documents/orders/$(orderId)).data) && (
+          request.resource.data.senderId == request.auth.uid ||
+          (userEmail() != '' && request.resource.data.senderId == userEmail()) ||
+          isAdmin()
+        );
+        allow update, delete: if isAdmin() || (
+          isAuthenticated() && (
+            resource.data.senderId == request.auth.uid ||
+            (userEmail() != '' && resource.data.senderId == userEmail())
+          )
+        );
+      }
+    }
+
+    // ---------- Payments (Server-Side Managed via Cloud Functions / Admin SDK) ----------
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.userId == userEmail()) ||
+        isAdmin()
+      );
+      allow write: if isAdmin();
+    }
+
+    // ---------- Group Orders ----------
+    match /groupOrders/{groupOrderId} {
+      allow get: if isAuthenticated();
+      allow list: if isAuthenticated() && request.query.limit <= 5;
+      allow create: if isAuthenticated() && (
+        request.resource.data.hostUserId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.hostUserId == userEmail()) ||
+        isAdmin()
+      );
+      allow update: if isAuthenticated() && (
+        isAdmin() ||
+        resource.data.hostUserId == request.auth.uid ||
+        (userEmail() != '' && resource.data.hostUserId == userEmail()) ||
+        (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(['hostUserId', 'groupOrderId', 'code', 'restaurantId', 'restaurantName', 'status', 'paymentMode', 'createdAt'])
+        )
+      );
+      allow delete: if isAdmin() || (isAuthenticated() && (resource.data.hostUserId == request.auth.uid || (userEmail() != '' && resource.data.hostUserId == userEmail())));
+    }
+
+    // ---------- Delivery Partner Applications & KYC ----------
+    match /deliveryPartnerApplications/{applicationId} {
+      allow read: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.email.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && (
+        request.resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.email.lower() == userEmail()) ||
+        isAdmin()
+      ) && (!('status' in request.resource.data) || request.resource.data.status == 'pending');
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ---------- Delivery Partners ----------
+    match /deliveryPartners/{partnerId} {
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        isDeliveryPartner() ||
+        partnerId == request.auth.uid ||
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.email.lower() == userEmail())
+      );
+      allow create: if isAdmin() || (isAuthenticated() && (partnerId == request.auth.uid || (userEmail() != '' && request.resource.data.email.lower() == userEmail())));
+      allow update: if isAdmin() || (isAuthenticated() && (partnerId == request.auth.uid || resource.data.userId == request.auth.uid || (userEmail() != '' && resource.data.email.lower() == userEmail())));
+      allow delete: if isAdmin();
+    }
+
+    // ---------- Delivery Partner Live Location ----------
+    match /partner_locations/{partnerId} {
+      allow read: if isAuthenticated() && (
+        isAdmin() ||
+        partnerId == request.auth.uid ||
+        (userEmail() != '' && partnerId.lower() == userEmail()) ||
+        (
+          'assignedOrderId' in resource.data &&
+          resource.data.assignedOrderId != '' &&
+          exists(/databases/$(database)/documents/orders/$(resource.data.assignedOrderId)) &&
+          isOrderCustomer(get(/databases/$(database)/documents/orders/$(resource.data.assignedOrderId)).data)
+        )
+      );
+      allow write: if isAdmin() || (
+        isAuthenticated() && (
+          partnerId == request.auth.uid ||
+          (userEmail() != '' && partnerId.lower() == userEmail())
+        )
+      );
+    }
+
+    // ---------- Delivery Partner Reviews ----------
+    match /deliveryPartnerReviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && (
+        request.resource.data.customerId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.customerId == userEmail()) ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin() || (isAuthenticated() && resource.data.customerId == request.auth.uid);
+    }
+
+    // ---------- Restaurant / Order Reviews ----------
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && (
+        request.resource.data.customerId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.customerId == userEmail()) ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin() || (isAuthenticated() && resource.data.customerId == request.auth.uid);
+    }
+
+    // ---------- Coupons & Discounts ----------
+    match /coupons/{couponId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ---------- Safety SOS Alerts ----------
+    match /sosAlerts/{alertId} {
+      allow read: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && (
+        request.resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- Order Accuracy Issues ----------
+    match /orderIssues/{issueId} {
+      allow read: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && (
+        request.resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- Support Tickets ----------
+    match /support_tickets/{ticketId} {
+      allow read: if isAuthenticated() && (
+        resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow create: if isAuthenticated() && (
+        request.resource.data.userId == request.auth.uid ||
+        (userEmail() != '' && request.resource.data.userId.lower() == userEmail()) ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin();
+    }
+
+    // ---------- Payment Gateway Config ----------
+    match /payment_gateway_config/{configId} {
+      allow read: if isAdmin();
+      allow write: if isAdmin();
+    }
+  }
+}

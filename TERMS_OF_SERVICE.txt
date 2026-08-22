@@ -1,0 +1,125 @@
+TERMS OF SERVICE FOR SWIFTCART
+Last Updated: August 09, 2026
+
+1. ACCEPTANCE OF TERMS
+By downloading, installing, accessing, or using the SwiftCart mobile application ("App") and associated services ("Services"), you agree to be bound by these Terms of Service ("Terms"). These Terms constitute a legally binding agreement between you and SwiftCart ("Company," "we," "us," or "our"). 
+
+If you do not agree to all of these Terms, you must not access or use the App or Services.
+
+---
+
+2. DESCRIPTION OF SERVICES
+SwiftCart operates a multi-vendor platform connecting customers ("Customers") with local restaurants, grocery stores, and merchants ("Merchants"), and independent delivery partners ("Delivery Partners") for the ordering, preparation, fulfillment, and delivery of food, groceries, and merchandise.
+
+SwiftCart acts as an intermediary technology platform. SwiftCart does not manufacture, sell, or prepare food or grocery goods directly, nor is it a transportation common carrier unless explicitly stated.
+
+---
+
+3. USER ELIGIBILITY AND ACCOUNT REGISTRATION
+
+A. Account Creation
+To access most features of the App, you must register for an account using a valid phone number, email address, and personal name. You agree to provide accurate, current, and complete information during registration.
+
+B. Account Security
+You are responsible for maintaining the confidentiality of your account login credentials, OTPs, and password. You are fully responsible for all activities that occur under your account. You agree to immediately notify us of any unauthorized use or security breach.
+
+C. Age Requirement
+You must be at least 18 years of age to register an account and purchase items on SwiftCart. Individuals under 18 may use the Services only under the supervision of a parent or legal guardian.
+
+---
+
+4. ORDERING, PRICING, AND PAYMENTS
+
+A. Order Placement & Acceptance
+When placing an order through SwiftCart, your order represents an offer to purchase selected items from the designated Merchant. Orders are subject to availability and acceptance by the Merchant.
+
+B. Pricing & Taxes
+All prices listed on the App are set by Merchants or platform guidelines and may include applicable taxes (GST), packaging fees, platform service charges, and delivery fees. Prices and fees are displayed before final order checkout.
+
+C. Payment Gateway
+Payments are processed via integrated secure third-party payment gateways (e.g., Razorpay, Stripe, Cash on Delivery). By providing payment information, you authorize SwiftCart and its payment processors to charge the specified amount for your order.
+
+D. Wallet & Rewards
+SwiftCart may offer digital wallet functionality, promotional referral codes, cashbacks, or rewards points ("SwiftCart Plus / Rewards"). Wallet balances and rewards points are non-transferable and may be subject to expiry rules specified in the App.
+
+---
+
+5. CANCELLATIONS, REFUNDS, AND RETURNS
+
+A. Cancellation by Customer
+- You may cancel an order free of charge before the Merchant accepts or begins preparing the order.
+- If you request cancellation after the Merchant has started order preparation or after a Delivery Partner has been assigned and dispatched, a cancellation fee up to 100% of the total order value may apply to cover costs incurred.
+
+B. Cancellation by Merchant or SwiftCart
+SwiftCart and Merchants reserve the right to cancel an order due to item unavailability, store closure, extreme weather, incorrect delivery address, or suspected fraudulent activity. In such cases, any prepaid amount will be refunded in full.
+
+C. Refunds
+Refund requests for missing, damaged, or incorrect items must be reported through the Customer Support section in the App within 24 hours of delivery. Valid refunds will be processed back to the original payment source or credited to your SwiftCart Wallet within 5–7 business days.
+
+---
+
+6. DELIVERY AND LIVE TRACKING
+
+A. Delivery Timelines & ETAs
+Estimated delivery times (ETAs) provided in the App are approximate estimates based on distance, traffic, merchant preparation times, and weather. SwiftCart is not liable for minor delays beyond reasonable operational control.
+
+B. Customer Availability
+Customers must ensure they are available at the specified delivery location to receive the order and answer communications from the Delivery Partner. If a Delivery Partner is unable to contact you after reasonable attempts at the delivery location, the order may be marked completed or canceled, and no refund will be issued.
+
+C. Delivery Partners
+Delivery Partners operate as independent contract service providers. SwiftCart provides live location tracking tools for safety, transparency, and route guidance.
+
+---
+
+7. USER CONDUCT AND RESTRICTION RULES
+You agree NOT to use the App to:
+- Violate any local, state, national, or international law or regulation.
+- Submit false, misleading, fraudulent, or inaccurate order details or addresses.
+- Harass, abuse, threaten, or intimidate Merchants, Delivery Partners, or Customer Support personnel.
+- Use automated scripts, bots, spiders, or unauthorized software to extract data or scrape the platform.
+- Attempt to breach, disable, or tamper with app authentication, security rules, or server infrastructure.
+
+Violation of user conduct rules will result in immediate account suspension or termination without prior notice.
+
+---
+
+8. INTELLECTUAL PROPERTY
+All content, branding, trademarks, logos, UI designs, software code, graphics, and text contained within SwiftCart are the exclusive intellectual property of SwiftCart and its licensors. You are granted a limited, non-exclusive, non-transferable license to access and use the App solely for personal, non-commercial use.
+
+---
+
+9. LIMITATION OF LIABILITY AND DISCLAIMERS
+
+A. Service Availability
+The App and Services are provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied. SwiftCart does not guarantee uninterrupted, error-free, or delay-free operations.
+
+B. Merchant & Product Responsibility
+Merchants are solely responsible for food quality, safety, hygiene, allergen labeling, and product freshness. SwiftCart is not liable for health issues or food quality disputes resulting from Merchant preparation, though we will assist in mediating reasonable support claims.
+
+C. Maximum Liability
+To the maximum extent permitted by applicable law, SwiftCart's total aggregate liability for any claims arising out of or relating to the use of the App or Services shall not exceed the total amount paid by you for the specific order giving rise to the claim.
+
+---
+
+10. TERMINATION
+SwiftCart reserves the right to suspend or terminate your account and access to the App at any time, with or without cause or prior notice, including for violation of these Terms. Upon termination, your right to use the Services will immediately cease.
+
+---
+
+11. GOVERNING LAW AND DISPUTE RESOLUTION
+These Terms shall be governed by and construed in accordance with the laws of India. Any disputes or claims arising out of or in connection with these Terms or the App shall be subject to the exclusive jurisdiction of the competent courts in India.
+
+---
+
+12. MODIFICATIONS TO TERMS
+We reserve the right to revise or update these Terms at any time. Changes will become effective upon posting the updated Terms in the App. Your continued use of the App following any modifications signifies your acceptance of the updated Terms.
+
+---
+
+13. CONTACT INFORMATION
+For questions, complaints, or feedback regarding these Terms of Service, please contact us:
+
+SwiftCart Support Team
+Email: support@swiftcart.com
+Website: https://swiftcart.com
+Address: SwiftCart Technologies, Support Division, India

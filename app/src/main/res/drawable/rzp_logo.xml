@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="40dp"
+    android:viewportWidth="120"
+    android:viewportHeight="40">
+    <!-- Razorpay Blue Background/Symbol -->
+    <path
+        android:fillColor="#0C2340"
+        android:pathData="M0,0h120v40h-120z" />
+    <path
+        android:fillColor="#072654"
+        android:pathData="M15,8h14l-8,24h-14z" />
+    <path
+        android:fillColor="#0C83FF"
+        android:pathData="M24,8h14l-8,24h-14z" />
+</vector>

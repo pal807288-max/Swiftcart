@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App & Common -->
+    <string name="app_name">SwiftCart</string>
+    <string name="app_tagline">तेज़ किराना और भोजन डिलीवरी</string>
+    <string name="ok">ठीक है</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="save">सहेजें</string>
+    <string name="delete">हटाएं</string>
+    <string name="edit">संपादित करें</string>
+    <string name="add">जोड़ें</string>
+    <string name="close">बंद करें</string>
+    <string name="back">पीछे</string>
+    <string name="search">खोजें</string>
+    <string name="submit">जमा करें</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="loading">लोड हो रहा है...</string>
+
+    <!-- Language Selector -->
+    <string name="language_settings">भाषा सेटिंग्स</string>
+    <string name="select_language">ऐप की भाषा चुनें</string>
+    <string name="language_english">English (अंग्रेज़ी)</string>
+    <string name="language_hindi">Hindi (हिंदी)</string>
+    <string name="current_language">वर्तमान भाषा: %1$s</string>
+    <string name="choose_language_title">अपनी भाषा चुनें</string>
+    <string name="choose_language_subtitle">SwiftCart शुरू करने के लिए अपनी पसंदीदा भाषा चुनें</string>
+    <string name="english_native">English</string>
+    <string name="english_subtitle">अंग्रेज़ी (डिफ़ॉल्ट)</string>
+    <string name="hindi_native">हिंदी</string>
+    <string name="hindi_subtitle">हिंदी</string>
+    <string name="continue_btn">आगे बढ़ें</string>
+
+    <!-- Auth / Login / Signup -->
+    <string name="welcome_back">वापसी पर स्वागत है</string>
+    <string name="sign_in_subtitle">SwiftCart में जारी रखने के लिए साइन इन करें</string>
+    <string name="sign_in">साइन इन करें</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="create_account">खाता बनाएं</string>
+    <string name="sign_up_subtitle">एक नया SwiftCart खाता बनाएं</string>
+    <string name="email_label">ईमेल पता</string>
+    <string name="password_label">पासवर्ड</string>
+    <string name="full_name_label">पूरा नाम</string>
+    <string name="phone_label">फ़ोन नंबर</string>
+    <string name="forgot_password">पासवर्ड भूल गए?</string>
+    <string name="dont_have_account">खाता नहीं है? साइन अप करें</string>
+    <string name="already_have_account">पहले से खाता है? साइन इन करें</string>
+    <string name="sign_in_google">Google से साइन इन करें</string>
+    <string name="sign_in_phone">फ़ोन (OTP) से साइन इन करें</string>
+    <string name="enter_phone_number">अपना 10 अंकों का मोबाइल नंबर दर्ज करें</string>
+    <string name="send_otp">OTP कोड भेजें</string>
+    <string name="enter_otp">6 अंकों का OTP दर्ज करें</string>
+    <string name="verify_otp">OTP सत्यापित करें</string>
+    <string name="reset_password_title">पासवर्ड रीसेट करें</string>
+    <string name="reset_password_instructions">पासवर्ड रीसेट लिंक प्राप्त करने के लिए अपना ईमेल दर्ज करें।</string>
+    <string name="send_reset_link">रीसेट लिंक भेजें</string>
+    <string name="verify_email_title">ईमेल सत्यापित करें</string>
+    <string name="verify_email_instructions">कृपया अपने ईमेल पर भेजा गया सत्यापन कोड दर्ज करें।</string>
+
+    <!-- Navigation Titles -->
+    <string name="nav_home">होम</string>
+    <string name="nav_search">खोजें</string>
+    <string name="nav_cart">कार्ट</string>
+    <string name="nav_orders">मेरे ऑर्डर</string>
+    <string name="nav_profile">प्रोफाइल</string>
+    <string name="nav_admin">एडमिन</string>
+    <string name="nav_delivery">डिलीवरी</string>
+    <string name="nav_store">स्टोर</string>
+
+    <!-- Customer Home & Search -->
+    <string name="delivering_to">डिलीवरी का पता</string>
+    <string name="search_hint">किराना, आवश्यक वस्तुएं और स्नैक्स खोजें...</string>
+    <string name="categories">श्रेणियां</string>
+    <string name="featured_stores">प्रमुख स्टोर्स</string>
+    <string name="popular_items">लोकप्रिय वस्तुएं</string>
+    <string name="add_to_cart">कार्ट में जोड़ें</string>
+    <string name="view_cart">कार्ट देखें</string>
+    <string name="rating">रेटिंग</string>
+    <string name="mins_delivery">%1$d मिनट</string>
+    <string name="closed">बंद है</string>
+    <string name="sold_out">स्टॉक खत्म</string>
+    <string name="low_stock">कम स्टॉक</string>
+    <string name="no_stores_found">कोई स्टोर नहीं मिला</string>
+    <string name="no_items_found">कोई वस्तु नहीं मिली</string>
+
+    <!-- Cart & Checkout -->
+    <string name="my_cart">मेरी कार्ट</string>
+    <string name="cart_empty">आपकी कार्ट खाली है</string>
+    <string name="cart_empty_subtitle">स्टोर देखें और अपनी कार्ट में सामान जोड़ें</string>
+    <string name="start_shopping">खरीदारी शुरू करें</string>
+    <string name="item_total">सामान का कुल मूल्य</string>
+    <string name="delivery_fee">डिलीवरी शुल्क</string>
+    <string name="taxes_and_charges">कर और सरकारी शुल्क</string>
+    <string name="grand_total">कुल योग</string>
+    <string name="to_pay">भुगतान राशि</string>
+    <string name="proceed_to_checkout">चेकआउट पर जाएं</string>
+    <string name="checkout">चेकआउट</string>
+    <string name="delivery_address">डिलीवरी का पता</string>
+    <string name="payment_method">भुगतान का तरीका</string>
+    <string name="place_order">ऑर्डर दें (%1$s)</string>
+    <string name="upi_pay">UPI / Google Pay / PhonePe</string>
+    <string name="cash_on_delivery">कैश ऑन डिलीवरी (COD)</string>
+
+    <!-- Order Tracking & History -->
+    <string name="order_placed_success">ऑर्डर सफलतापूर्वक दिया गया!</string>
+    <string name="order_id_label">ऑर्डर आईडी: #%1$s</string>
+    <string name="track_order">ऑर्डर ट्रैक करें</string>
+    <string name="order_status">ऑर्डर की स्थिति</string>
+    <string name="order_processing">ऑर्डर प्रोसेस हो रहा है</string>
+    <string name="estimated_arrival">अनुमानित समय: 15–20 मिनट</string>
+    <string name="pickup_from">पिकअप स्थान:</string>
+    <string name="deliver_to">डिलीवरी स्थान:</string>
+
+    <!-- Store Owner & Admin Panel -->
+    <string name="store_owner_dashboard">स्टोर मालिक डैशबोर्ड</string>
+    <string name="admin_panel">एडमिन पैनल</string>
+    <string name="manage_inventory">इन्वेंटरी प्रबंधित करें</string>
+    <string name="add_new_item">नई वस्तु जोड़ें</string>
+    <string name="item_name">वस्तु का नाम</string>
+    <string name="item_price">मूल्य (₹)</string>
+    <string name="item_category">श्रेणी</string>
+    <string name="item_description">विवरण</string>
+    <string name="incoming_orders">आने वाले ऑर्डर</string>
+    <string name="no_orders">कोई ऑर्डर नहीं मिला</string>
+
+    <!-- Delivery Partner Dashboard -->
+    <string name="delivery_partner_dashboard">डिलीवरी पार्टनर डैशबोर्ड</string>
+    <string name="todays_earnings">आज की कमाई</string>
+    <string name="total_earnings">कुल कमाई</string>
+    <string name="live_deliveries">लाइव डिलीवरी</string>
+    <string name="delivery_history">डिलीवरी इतिहास</string>
+    <string name="accept_delivery">डिलीवरी स्वीकार करें (₹30 शुल्क)</string>
+    <string name="mark_delivered">डिलीवर मार्क करें</string>
+    <string name="earned_amount">कमाए ₹%1$.2f</string>
+
+    <!-- Profile & Settings -->
+    <string name="profile">प्रोफाइल</string>
+    <string name="delivery_account_info">डिलीवरी खाता जानकारी</string>
+    <string name="address">पता</string>
+    <string name="verification_status">सत्यापन स्थिति</string>
+    <string name="language_preference">भाषा प्राथमिकता</string>
+    <string name="logout_securely">SwiftCart से सुरक्षित लॉगआउट करें</string>
+    <string name="testing_and_diagnostics">परीक्षण और निदान</string>
+    <string name="reset_and_seed">रीसेट करें और डेटा भरें</string>
+    <string name="empty_database">डेटाबेस खाली करें</string>
+</resources>

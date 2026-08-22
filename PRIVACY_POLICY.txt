@@ -1,0 +1,116 @@
+PRIVACY POLICY FOR SWIFTCART
+Last Updated: August 09, 2026
+
+1. INTRODUCTION
+Welcome to SwiftCart ("we," "our," or "us"). SwiftCart provides an on-demand food, grocery, and multi-vendor delivery platform through our mobile application. We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use the SwiftCart mobile application and related services.
+
+Please read this Privacy Policy carefully. By creating an account, placing an order, or using the SwiftCart application, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this policy, please do not access or use the application.
+
+---
+
+2. INFORMATION WE COLLECT
+We collect several types of information from and about users of our application, including:
+
+A. Personal Information You Provide
+- Account & Profile Data: Name, email address, phone number, profile picture, and account credentials during registration.
+- Delivery Address & Location Data: Saved delivery addresses, pin codes, city, state, and specific delivery instructions.
+- Role-Specific Information:
+  * For Restaurant Owners: Store name, store address, business registration details, and menu/catalog data.
+  * For Delivery Partners: Government-issued identification, driver's license details, vehicle information, phone number, and background verification details.
+
+B. Precise & Approximate Location Data
+- Customer Location: We collect your precise (GPS) or approximate device location to show nearby restaurants/stores, calculate accurate delivery fees, determine estimated arrival times (ETA), and deliver orders.
+- Delivery Partner Location: We collect real-time background and foreground location data from delivery partners while active on the app to assign nearby orders, enable live order tracking for customers and restaurants, and ensure safety and route optimization.
+
+C. Transaction & Order History
+- Details of products and items ordered, store details, timestamps, order amounts, delivery instructions, order status, and past purchase history.
+
+D. Payment Information
+- Payment transactions are processed through secure, PCI-DSS compliant third-party payment gateways (e.g., Razorpay, Stripe). We do not store full credit/debit card numbers or bank credentials on our servers. We store payment confirmation IDs, transaction statuses, wallet balances, and refund records.
+
+E. Communications & Support Data
+- Messages, support tickets, feedback, product reviews, and ratings submitted within the app.
+
+F. Device & Usage Information
+- Device hardware model, operating system version, unique device identifiers (e.g., Firebase Installation ID), IP address, app performance logs, crash reports, and Firebase Cloud Messaging (FCM) push notification tokens.
+
+---
+
+3. HOW WE USE YOUR INFORMATION
+We use the collected information for the following purposes:
+- To create, manage, and authenticate user accounts (Customer, Restaurant Owner, Delivery Partner, Admin).
+- To process, fulfill, track, and complete food and grocery orders.
+- To display live location tracking and real-time ETAs on active orders.
+- To process payments, refunds, wallet transactions, and delivery partner earnings.
+- To send transactional notifications, order updates, OTPs, and support alerts via Firebase Cloud Messaging (FCM) and SMS.
+- To calculate delivery fees, optimize delivery partner assignment, and improve routing.
+- To provide customer support and respond to inquiries or dispute claims.
+- To prevent fraud, verify delivery partner applications, and maintain platform security.
+- To comply with legal and regulatory obligations.
+
+---
+
+4. SHARING AND DISCLOSURE OF YOUR INFORMATION
+We do not sell, rent, or trade your personal information. We share information only under the following operational circumstances:
+
+- With Restaurants & Stores: Order items, customer first name, delivery address, and order notes necessary to prepare and pack your order.
+- With Delivery Partners: Customer name, delivery address, phone number (or masked contact), location, and order details necessary to deliver your package.
+- With Service Providers & Cloud Vendors: Third-party infrastructure providers that power our app, including:
+  * Google Cloud / Firebase (Authentication, Firestore, Cloud Storage, FCM Notifications, Cloud Functions)
+  * Google Maps Platform (Geocoding, Place suggestions, and map rendering)
+  * Payment Gateways (Razorpay / Stripe) for processing payments securely
+- For Legal & Security Compliance: If required by law, court order, or governmental regulation, or to protect the rights, safety, and property of SwiftCart, our users, or the public.
+
+---
+
+5. DATA SECURITY
+We implement industry-standard administrative, technical, and physical security measures to protect your personal data, including:
+- TLS/SSL encryption for data transmitted between the mobile app and cloud servers.
+- Role-based access controls restricting data access strictly to authorized personnel.
+- Secure Firebase Firestore and Storage rules preventing unauthorized read/write access.
+- Third-party payment tokenization ensuring sensitive financial card data is handled exclusively by PCI-DSS compliant payment processors.
+
+While we strive to use commercially acceptable means to protect your personal information, no method of transmission over the internet or method of electronic storage is 100% secure.
+
+---
+
+6. DATA RETENTION AND ACCOUNT DELETION
+
+A. Data Retention
+We retain your personal information for as long as your account remains active or as needed to fulfill the purposes outlined in this Privacy Policy, resolve disputes, enforce agreements, or satisfy statutory legal requirements.
+
+B. Account & Data Deletion
+You have the right to request the deletion of your account and associated personal data at any time.
+- How to Delete: You can request account deletion directly within the SwiftCart app profile settings or by contacting our Data Support team at: support@swiftcart.com.
+- Data Removal: Upon receiving an account deletion request, we will deactivate your account and permanently remove your personal profile, phone number, saved addresses, and active tokens, except for data required to be retained by applicable law or accounting records (e.g., completed financial transaction history).
+
+---
+
+7. CHILDREN'S PRIVACY
+SwiftCart is not intended for use by individuals under the age of 13 (or under 18 for delivery partner registration). We do not knowingly collect personal data from children. If we become aware that a child has provided us with personal information, we will take immediate steps to delete such information from our servers.
+
+---
+
+8. THIRD-PARTY SERVICES & LINKS
+Our application utilizes trusted third-party SDKs and services that may collect information used to identify you:
+- Google Play Services
+- Google Maps SDK
+- Firebase Authentication, Firestore, Storage, FCM
+- Razorpay / Stripe SDKs
+
+These third-party providers operate under their respective privacy policies. We encourage you to review their terms.
+
+---
+
+9. CHANGES TO THIS PRIVACY POLICY
+We may update our Privacy Policy from time to time. We will notify you of any material changes by updating the "Last Updated" date at the top of this Privacy Policy and, where appropriate, posting a notification within the app. Your continued use of SwiftCart following the posting of changes constitutes acceptance of the updated policy.
+
+---
+
+10. CONTACT US
+If you have any questions, concerns, or requests regarding this Privacy Policy or data protection, please contact us at:
+
+SwiftCart Customer & Privacy Support
+Email: support@swiftcart.com
+Website: https://swiftcart.com
+Address: SwiftCart Technologies, Support Division, India
